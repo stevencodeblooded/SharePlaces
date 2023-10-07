@@ -1,0 +1,22 @@
+.users {
+    display: flex;
+}
+
+.userlink {
+    text-decoration: none;
+}
+
+.one-user {
+    border: 1px solid rebeccapurple;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.picture-for-profile {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    margin-right: 40px;
+}

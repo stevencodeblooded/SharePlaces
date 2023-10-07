@@ -1,0 +1,38 @@
+.header-container {
+    background-color: aqua;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 900px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.header > h2 > a {
+    text-decoration: none;
+    font-style: italic;
+}
+
+.nav-items {
+    display: flex;
+    list-style: none;
+}
+
+.nav-items > li {
+    margin-inline: 30px;
+}
+
+.nav-items > li > a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.active-link {
+    color: red;
+}
