@@ -4,7 +4,8 @@ import { useRouteError } from 'react-router-dom'
 import './Error.css'
 
 const Error = () => {
-    const error = useRouteError()
+  
+  const error = useRouteError()
 
   return (
     <div>

@@ -1,10 +1,10 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import "./UserCard.css";
 import profileImage1 from '../assets/profile1.jpg'
 import profileImage2 from '../assets/profile2.jpg'
 import profileImage3 from '../assets/profile3.png'
+import "./UserCard.css";
 
 const UserCard = () => {
 
@@ -37,10 +37,10 @@ const UserCard = () => {
   return (
     <div className="users">
 
-        {USERS.map((user, index) => {
+        {USERS.map((user) => {
           return (
-            <Link to={`${user.uid}/Places`} className="userlink">
-                <div key={index} className="one-user">
+            <Link to={`${user.uid}/Places`} className="userlink" key={user.uid}>
+                <div className="one-user">
                     <img src={user.profileImage} alt="Profile" className="picture-for-profile" />
                     <div className="name-places">
                         <h3>{user.name}</h3>

@@ -2,8 +2,9 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 
 import Users from './Container/Users'
 import Places from './Container/Places'
-import Authenticate from './Container/Authenticate'
-import NewPlace from './Container/NewPlace'
+import Authenticate, {action as authenticateAction} from './Container/Authenticate'
+import SignUp, {action as signUpAction} from './Components/Authenticate/SignUp'
+import NewPlace, {action as newPlaceAction} from './Container/NewPlace'
 import DetailPlace from './Container/DetailPlace'
 import Layout from './Container/Layout'
 import NotFound from './Components/NotFound/NotFound'
@@ -30,13 +31,22 @@ function App() {
       <Route 
         path='Authenticate' 
         element={<Authenticate />} 
-        errorElement={<Error />} 
+        errorElement={<Error />}
+        action={authenticateAction}
+      />
+
+      <Route 
+        path='SignUp' 
+        element={<SignUp />} 
+        errorElement={<Error />}
+        action={signUpAction}
       />
       
       <Route 
         path='Places/NewPlace' 
         element={<NewPlace />} 
         errorElement={<Error />}
+        action={newPlaceAction}
       />
       
       <Route 

@@ -4,6 +4,8 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* color: #fff; */
+  /* background-image: linear-gradient(0deg, rgb(53, 0, 127), rgb(64, 0, 191) 32.29%, rgb(53, 0, 127) 60.81%, rgb(0, 0, 0) 93.75%); */
 }
 
 body {
