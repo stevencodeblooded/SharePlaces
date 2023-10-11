@@ -35,7 +35,7 @@ const UserCard = () => {
   }
 
   return (
-    <div className="users">
+    <div className="users-list">
 
         {USERS.map((user) => {
           return (

@@ -10,7 +10,6 @@ const UserPlace = ({ user }) => {
     const [isViewed, setIsViewed] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     
-    
     const handleViewOnMap = () => {
         setIsViewed(true)
     }
@@ -20,26 +19,30 @@ const UserPlace = ({ user }) => {
     }
 
   return (
-    <div>
-        <div>
+    <div className='user-places'>
+        <div className='user-place-data'>
             <img src={user.placeImage} alt="Place" className='place-image'/>
-            <div>
+
+            <div className='place-title-desc'>
                 <h2>{ user.titleOfPlace }</h2>
+                <h3>{user.street}</h3>
                 <p>{user.descrption}</p>
             </div>
-            <div>
+
+            <hr  className='hr-line'/>
+
+            <div className='view-edit-delete'>
                 <button onClick={handleViewOnMap}>View on Map</button>
                 {isViewed && (
-                    <ViewOnMap setIsViewed={setIsViewed}/>
+                    <ViewOnMap setIsViewed={setIsViewed} user={user} />
                 )}
 
-                <div>
-                    <Link to={`/Places/${user.uid}/edit`}>Edit</Link>
-                    <button onClick={handleDelete}>Delete</button>
-                    {isDelete && (
-                        <DeleteModal />
-                    )}
-                </div>
+                <Link to={`/Places/${user.uid}/edit`}>Edit</Link>
+                <button onClick={handleDelete}>Delete</button>
+                {isDelete && (
+                    <DeleteModal />
+                )}
+
             </div>
         </div>
     </div>

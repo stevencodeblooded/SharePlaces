@@ -4,11 +4,108 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* color: #fff; */
   /* background-image: linear-gradient(0deg, rgb(53, 0, 127), rgb(64, 0, 191) 32.29%, rgb(53, 0, 127) 60.81%, rgb(0, 0, 0) 93.75%); */
 }
 
 body {
+  position: relative;
   min-height: 100vh;
-  position:  relative;
+}
+
+/* ----------------USERS--------- */
+
+.users {
+  display: flex;
+  justify-self: center;
+}
+
+/* --------------------NEW PLACE FORM------------------- */
+
+.new-place-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.form-container {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 7px;
+}
+
+.form-container > label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.form-container > input, .form-container > textarea {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border: 2px solid #000080;
+  border-radius: 5px;
+}
+
+.add-place-btn {
+  width: 100px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #FF6B6B;
+  cursor: pointer;
+  transition: .3s all ease-in-out;
+}
+
+.add-place-btn:hover {
+  color: #FFD700;
+}
+
+/*--------------------EDIT PLACE----------------  */
+
+.edit-place {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.edit-place-form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  row-gap: 7px;
+}
+
+
+.edit-place-form > label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.edit-place-form > input, .edit-place-form > textarea {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border: 2px solid #000080;
+  border-radius: 5px;
+}
+
+.update-place-btn {
+  width: 150px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #FF6B6B;
+  cursor: pointer;
+  transition: .3s all ease-in-out;
+}
+
+.update-place-btn:hover {
+  color: #FFD700;
 }

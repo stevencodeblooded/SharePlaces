@@ -1,27 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
+import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faBars, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 import "./Header.css";
 
 const Header = () => {
+
+  const [isOpen, setIsOpen] = useState(false)
+  const handleIsOpen = () => setIsOpen(!isOpen)
+
+  const handleCloseMenu = () => setIsOpen(false)
+
   return (
     <div className="header-container">
       <div className="header">
         <h2>
-          <NavLink to='/'>Share Places</NavLink>
+          <NavLink to='/' onClick={handleCloseMenu}>Share Places</NavLink>
         </h2>
-        <ul className="nav-items">
+
+        <FontAwesomeIcon icon={!isOpen ? faBars : faTimes} onClick={handleIsOpen} className="faTimes-faBars"/>
+
+        <ul className={isOpen ? 'nav-items-mobile' : 'nav-items'}>
           <li>
-            <NavLink to='/' className={({isActive}) => isActive ? 'active-link' : null}>Users</NavLink>
+            <NavLink to='/' className={({isActive}) => isActive ? 'active-link' : null} onClick={handleCloseMenu}>Users</NavLink>
           </li>
           <li>
-            <NavLink to='Authenticate' className={({isActive}) => isActive ? 'active-link' : null}>Authenticate</NavLink>
+            <NavLink to='Authenticate' className={({isActive}) => isActive ? 'active-link' : null} onClick={handleCloseMenu}>Authenticate</NavLink>
           </li>
           <li>
-            <NavLink to='places/NewPlace' className={({isActive}) => isActive ? 'active-link' : null} >New Place</NavLink>
+            <NavLink to='places/NewPlace' className={({isActive}) => isActive ? 'active-link' : null} onClick={handleCloseMenu} >New Place</NavLink>
           </li>
         </ul>
+
       </div>
     </div>
   );

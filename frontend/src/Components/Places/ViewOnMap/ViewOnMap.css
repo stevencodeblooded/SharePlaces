@@ -1,0 +1,52 @@
+.overlay {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    
+.google-modal {
+    position: absolute;
+    width: 45%;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.google-modal > h2 {
+    background-color: #FFD700;
+    color: #000080;
+    padding: 20px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+
+.close-modal-btn {
+    display: flex;
+    justify-content: right;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.exit-modal {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ccc;
+    color: #000;
+    transition: .3s ease-in-out all;
+}
+
+.exit-modal:hover {
+    color: #FF6B6B;
+}

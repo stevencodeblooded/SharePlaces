@@ -1,5 +1,5 @@
 .header-container {
-    background-color: aqua;
+    background-color: #FFD700;
     height: 70px;
     display: flex;
     align-items: center;
@@ -11,16 +11,26 @@
     width: 900px;
     margin: 0 auto;
     align-items: center;
+    padding-inline: 20px;
 }
 
 .header > h2 > a {
     text-decoration: none;
     font-style: italic;
+    color: #000080;
+}
+
+.faTimes-faBars {
+    display: none;
 }
 
 .nav-items {
     display: flex;
     list-style: none;
+}
+
+.nav-items-mobile {
+    display: none;
 }
 
 .nav-items > li {
@@ -35,4 +45,42 @@
 
 .active-link {
     color: red;
+}
+
+@media screen and (max-width: 760px) {
+    .nav-items-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        top: 70px;
+        z-index: 100;
+        height: 50vh;
+        width: 70%;
+        background-color: #FFD700;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+        border-bottom-left-radius: 10px;
+    }
+
+    .nav-items-mobile > li {
+        list-style: none;
+        margin-block: 30px;
+    }
+
+    .nav-items-mobile > li > a {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .faTimes-faBars {
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    
+    .nav-items {
+        display: none;
+    }
 }

@@ -1,0 +1,50 @@
+.overlay {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    
+.delete-container {
+    position: absolute;
+    width: 45%;
+    background-color: #fff;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+}
+
+.delete-container > h2 {
+    color: #000080;
+    margin-bottom: 30px;
+}
+
+.delete-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.delete-btns > button {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ccc;
+    color: #000;
+    transition: .3s ease-in-out all;
+}
+
+.delete-btns > button:hover {
+    color: #FF6B6B;
+}

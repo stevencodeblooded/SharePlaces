@@ -4,7 +4,7 @@ import UserCard from '../Components/Users/UserCard'
 
 const Users = () => {
   return (
-    <div>
+    <div className='users'>
       <UserCard />
     </div>
   )

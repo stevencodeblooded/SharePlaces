@@ -1,15 +1,16 @@
 import React from 'react'
 
-import { Form, useActionData, Link } from 'react-router-dom'
+import { Form, useActionData } from 'react-router-dom'
 
 export async function action({ request }) {
 
   const formData = await request.formData()
   const title = formData.get('title')
   const description = formData.get('description')
-  const image = formData.get('image')
+  const address = formData.get('address')
+  // const image = formData.get('image')
 
-  return { title, description, image }
+  return { title, description, address }
 }
 
 const NewPlace = () => {
@@ -18,33 +19,43 @@ const NewPlace = () => {
   console.log(data);
 
   return (
-    <div>
-      <Form method='post'>
-        <label htmlFor="title">Title</label>
-        <input 
-            type="text" 
-            name="title" 
-            id="title" 
-        />
+    <div className='new-place-form'>
+      <div>
+        <Form method='post' className='form-container'>
+          <label htmlFor="title">Title</label>
+          <input 
+              type="text" 
+              name="title" 
+              id="title" 
+          />
 
-        <label htmlFor="description">Description</label>
-        <input 
-            type="text" 
-            name="description" 
-            id="description" 
-        />
+          <label htmlFor="description">Description</label>
+          <textarea 
+              name="description" 
+              id="description" 
+              rows="8"
+            >
+              
+            </textarea>
 
-        <label htmlFor="image">Place Image</label>
-        <input 
-            type="file" 
-            name="image" 
-            id="image" 
-        />
+          <label htmlFor="address">Address</label>
+          <input 
+              type="text" 
+              name="address" 
+              id="address" 
+          />
 
-        <button type='submit'>Add Place</button>
-        <Link to='/'>Back Home</Link>
+          {/* <label htmlFor="image">Place Image</label>
+          <input 
+              type="file" 
+              name="image" 
+              id="image" 
+          /> */}
 
-      </Form>
+          <button type='submit' className='add-place-btn'>Add Place</button>
+
+        </Form>
+      </div>
     </div>
   )
 }
