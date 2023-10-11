@@ -87,6 +87,7 @@ const EditPlace = () => {
             value={formData.description}
             onChange={handleChange}
         >
+          
         </textarea>
 
         <button className='update-place-btn'>Update Place</button>
