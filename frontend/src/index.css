@@ -7,8 +7,7 @@
   /* background-image: linear-gradient(0deg, rgb(53, 0, 127), rgb(64, 0, 191) 32.29%, rgb(53, 0, 127) 60.81%, rgb(0, 0, 0) 93.75%); */
 }
 
-body {
-  position: relative;
+.full-container {
   min-height: 100vh;
 }
 
@@ -64,6 +63,14 @@ body {
   color: #FFD700;
 }
 
+@media screen and (max-width: 600px) {
+  .form-container {
+    width: 100%;
+    padding-inline: 0;
+  }
+}
+
+
 /*--------------------EDIT PLACE----------------  */
 
 .edit-place {
@@ -108,4 +115,11 @@ body {
 
 .update-place-btn:hover {
   color: #FFD700;
+}
+
+@media screen and (max-width: 700px) {
+  .edit-place-form {
+    width: 100%;
+    padding-inline: 30px;
+  }
 }

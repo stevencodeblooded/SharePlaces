@@ -7,7 +7,7 @@
 }
 
 .user-place-data {
-    width: 40%;
+    width: 500px;
     border: 1px solid #ccc;
     border-radius: 10px;
 }
@@ -60,13 +60,13 @@
     padding: 4px 10px;
     border-radius: 5px;
     text-decoration: none;
-    color: #000;
-    background-color: #ccc;
+    color: #fff;
+    background-color: #FF6B6B;
     transition: .3s ease-in-out all;
 }
 
 .view-edit-delete > a:hover{
-    color: #FF6B6B;
+    color: #FFD700;
 }
 
 .view-edit-delete > button {
@@ -76,11 +76,17 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #ccc;
-    color: #000;
+    background-color: #FF6B6B;
+    color: #fff;
     transition: .3s ease-in-out all;
 }
 
 .view-edit-delete > button:hover {
-    color: #FF6B6B;
+    color: #FFD700;
+}
+
+@media screen and (max-width: 550px) {
+    .user-place-data {
+        width: 80%;
+    }
 }

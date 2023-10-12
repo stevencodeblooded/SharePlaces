@@ -1,0 +1,69 @@
+
+/* -----------------------AUTHENTICATE------------- */
+
+.authenticate {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .authenticate-form {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    row-gap: 10px;
+  }
+  
+  .authenticate-form > label {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .authenticate-form > input {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border: 2px solid #000080;
+    border-radius: 5px;
+  }
+  
+  .auth-bns-links {
+    display: flex;
+    justify-content: right;
+    column-gap: 40px;
+  }
+  
+  .auth-bns-links > button {
+    width: 100px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #FF6B6B;
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+  }
+  
+  .auth-bns-links > button:hover {
+    color: #FFD700;
+  }
+  
+  .auth-bns-links > a {
+    text-decoration: none;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #FF6B6B;
+    color: #fff;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .authenticate-form {
+      width: 100%;
+      padding-inline: 30px;
+    }
+  }

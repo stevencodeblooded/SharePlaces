@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Form, useActionData } from 'react-router-dom'
+import { Form, useActionData, Link } from 'react-router-dom'
 import './SignUp.css'
 
 export async function action ({ request }) {
@@ -20,32 +20,37 @@ const SignUp = () => {
     console.log(data);
 
   return (
-    <div>
-        <Form method='post'>
+    <div className='authenticate'>
+        <Form method='post' className='authenticate-form'>
+
+            <label htmlFor="email">Email</label>
             <input 
                 type="email" 
                 name="email" 
-                placeholder='Email'
             />
 
+            <label htmlFor="password">Password</label>
             <input 
                 type="password" 
                 name="password" 
-                placeholder='Password'
             />
 
+            <label htmlFor="confirmPassword">Repeat Password</label>
             <input 
                 type="password" 
                 name="confirmPassword" 
-                placeholder='Repeat Password'
             />
 
+            <label htmlFor="profile"></label>
             <input 
                 type="file" 
                 name="profile" 
             />
-
-            <button type="submit">Sign Up</button>
+            
+            <div className='auth-bns-links'>
+                <Link to='/Authenticate'>Log in</Link>
+                <button type="submit">Sign Up</button>
+            </div>
         </Form>
     </div>
   )

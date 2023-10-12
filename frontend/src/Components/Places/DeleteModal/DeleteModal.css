@@ -40,11 +40,11 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #ccc;
-    color: #000;
+    color: #fff;
+    background-color: #FF6B6B;
     transition: .3s ease-in-out all;
 }
 
 .delete-btns > button:hover {
-    color: #FF6B6B;
+    color: #FFD700;
 }

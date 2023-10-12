@@ -16,21 +16,22 @@ const Authenticate = () => {
   console.log(data);
 
   return (
-    <div>
-      <Form method='post'>
+    <div className='authenticate'>
+      <Form method='post' className='authenticate-form'>
+
+        <label htmlFor="email">Email</label>
         <input 
             type="email" 
             name="email" 
-            placeholder='Email'
         />
 
+        <label htmlFor="password">Password</label>
         <input 
             type="password" 
             name="password" 
-            placeholder='Password'
         />
 
-        <div>
+        <div className='auth-bns-links'>
           <Link to='/SignUp'>Sign Up</Link>
           <button type='submit'>Login</button>
         </div>
