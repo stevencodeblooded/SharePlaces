@@ -1,6 +1,13 @@
 
 /* -----------------------AUTHENTICATE------------- */
 
+.message-login {
+  text-align: center;
+  font-weight: 500;
+  color: #FF6B6B;
+  margin-top: 30px;
+}
+
 .authenticate {
     display: flex;
     justify-content: center;

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Form, useActionData } from 'react-router-dom'
+import { authRequired } from '../Components/utils/AuthRequired'
 
 export async function action({ request }) {
 
@@ -11,6 +12,11 @@ export async function action({ request }) {
   // const image = formData.get('image')
 
   return { title, description, address }
+}
+
+export async function loader({request}) {
+  await authRequired(request)
+  return null
 }
 
 const NewPlace = () => {

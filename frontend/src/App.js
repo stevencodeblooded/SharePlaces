@@ -4,7 +4,7 @@ import Users from './Container/Users'
 import Places from './Container/Places'
 import Authenticate, {action as authenticateAction} from './Container/Authenticate'
 import SignUp, {action as signUpAction} from './Components/Authenticate/SignUp'
-import NewPlace, {action as newPlaceAction} from './Container/NewPlace'
+import NewPlace, {action as newPlaceAction, loader as newPlaceLoader} from './Container/NewPlace'
 import DetailPlace from './Container/DetailPlace'
 import Layout from './Container/Layout'
 import NotFound from './Components/NotFound/NotFound'
@@ -47,6 +47,7 @@ function App() {
         element={<NewPlace />} 
         errorElement={<Error />}
         action={newPlaceAction}
+        loader={newPlaceLoader}
       />
       
       <Route 
