@@ -85,4 +85,4 @@ router.delete('/:pid', (req, res, next) => {
     res.status(200).json({ message: 'Deleted Place Successfully'})
 })
 
-module.exports = router 
+module.exports = router
