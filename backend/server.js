@@ -1,14 +1,20 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 const placesRoutes = require('./routes/places-routes')
 const usersRoutes = require('./routes/users-routes')  
 
 const app = express()
 
-app.use(bodyParser.json()) //get req.body
+app.use(bodyParser.json()) 
 
 app.use('/api/places', placesRoutes)
 app.use('/api/users', usersRoutes)
 
-app.listen(5000)
+mongoose
+    .connect('mongodb+srv://stevencodeblooded:A1UOPy0y3FeiXXQ7@cluster0.p3mcyyf.mongodb.net/SharePlaces?retryWrites=true&w=majority')
+    .then(()=> {
+        app.listen(5000)
+    })
+    .catch(err => console.log(err))

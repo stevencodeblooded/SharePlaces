@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-
 const uuid = require('uuid')
+
+const User = require('../models/users')
 
 const DUMMY_USERS = [{
     id: 'ul',
