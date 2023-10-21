@@ -1,18 +1,37 @@
 import React from 'react'
 
-import { Form, useActionData, Link, useSearchParams, redirect } from 'react-router-dom'
+import { Form, Link, useSearchParams, redirect } from 'react-router-dom'
 
 export async function action({request}) {
   const formData = await request.formData()
 
   const email = formData.get('email')
   const password = formData.get('password')
-  console.log({ email, password });
 
-  localStorage.setItem('isLoggedIn', 'true')
+  const response = await fetch('http://localhost:5000/api/users/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
+  }) 
 
-  const pathname = new URL(request.url).searchParams.get('redirectTo') || '/'
-  throw redirect(pathname)
+  if (!response.ok) {
+      const data = await response.json()
+      throw new Error(data.message)
+  } else {
+    const data = await response.json()
+    if (data.message === 'Logged In Successfully!' ) {
+      const pathname = new URL(request.url).searchParams.get('redirectTo') || '/'
+      localStorage.setItem('isLoggedIn', true)
+      throw  redirect(pathname)
+    }
+  }
+
+  return null
 }
 
 const Authenticate = () => {
@@ -20,9 +39,6 @@ const Authenticate = () => {
   const [searchParams] = useSearchParams()
   const message = searchParams.get('message')
   
-  const data = useActionData()
-  console.log(data);
-
   return (
     <>
     {message && <h2 className='message-login'>{message}</h2>}
@@ -35,12 +51,14 @@ const Authenticate = () => {
         <input 
             type="email" 
             name="email" 
+            required
         />
 
         <label htmlFor="password">Password</label>
         <input 
             type="password" 
-            name="password" 
+            name="password"
+            required 
         />
 
         <div className='auth-bns-links'>

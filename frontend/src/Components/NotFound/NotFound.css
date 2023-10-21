@@ -1,0 +1,19 @@
+.notfound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    text-align: center;
+}
+
+.not-found-heading {
+    font-size: 4rem;
+    letter-spacing: 3px;
+    color: #FF6B6B;
+}
+
+.not-found-txt {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}

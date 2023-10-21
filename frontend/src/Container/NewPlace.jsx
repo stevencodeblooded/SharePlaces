@@ -9,9 +9,9 @@ export async function action({ request }) {
   const title = formData.get('title')
   const description = formData.get('description')
   const address = formData.get('address')
-  // const image = formData.get('image')
+  const image = formData.get('image')
 
-  return { title, description, address }
+  return { title, description, address, image }
 }
 
 export async function loader({request}) {
@@ -32,7 +32,8 @@ const NewPlace = () => {
           <input 
               type="text" 
               name="title" 
-              id="title" 
+              id="title"
+              required 
           />
 
           <label htmlFor="description">Description</label>
@@ -40,6 +41,7 @@ const NewPlace = () => {
               name="description" 
               id="description" 
               rows="8"
+              required
             >
               
             </textarea>
@@ -49,14 +51,15 @@ const NewPlace = () => {
               type="text" 
               name="address" 
               id="address" 
+              required
           />
 
-          {/* <label htmlFor="image">Place Image</label>
+          <label htmlFor="image">Place Image</label>
           <input 
               type="file" 
               name="image" 
               id="image" 
-          /> */}
+          />
 
           <button type='submit' className='add-place-btn'>Add Place</button>
 

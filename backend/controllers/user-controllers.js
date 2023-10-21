@@ -28,7 +28,7 @@ const signup = async (req, res, next) => {
     }
 
     if (existingUser) {
-        return res.json({message: 'User already exists, please login'}).status(422)
+        return res.status(422).json({message: 'User already exists, please login'})
     }
 
     const createdUser = new User({
