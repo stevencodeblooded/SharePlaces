@@ -1,12 +1,22 @@
 import React from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useLoaderData, useParams } from 'react-router-dom'
 import UserPlace from '../Components/Places/UserPlace'
 import place1 from '../Components/assets/place1.jpg'
 import place2 from '../Components/assets/place2.jpeg'
 import place3 from '../Components/assets/place3.jpg'
 
+export async function loader() {
+  const res = await fetch('http://localhost:5000/api/users')
+  const data = await res.json()
+
+  return data
+}
+
 const Places = () => {
+
+  const userData = useLoaderData()
+  console.log('UserData - Places',userData);
 
   const USERS = [
     {

@@ -65,7 +65,7 @@ const login = async (req, res, next) => {
         return res.status(401).json({ message: 'invalid credentials, could not log in' })
     }
     
-    res.status(200).json({message: 'Logged In Successfully!'})
+    res.status(200).json({message: 'Logged In Successfully!', user: existingUser.toObject({ getters: true })})
 }
 
 exports.getUsers = getUsers

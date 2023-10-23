@@ -1,34 +1,12 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import profileImage1 from '../assets/profile1.jpg'
-import profileImage2 from '../assets/profile2.jpg'
-import profileImage3 from '../assets/profile3.png'
 import "./UserCard.css";
 
-const UserCard = () => {
+const UserCard = ({ users }) => {
 
     //Dummy Users
-  const USERS = [
-    {
-        uid: 1,
-        name: "Steven Ochieng",
-        profileImage: profileImage1,
-        placesVisited: 3,
-    },
-    {
-        uid: 2,
-        name: "Clinton Odhiambo",
-        profileImage: profileImage2,
-        placesVisited: 1,
-    },
-    {
-        uid: 3,
-        name: "Erine Auma",
-        profileImage: profileImage3,
-        placesVisited: 4,
-    },
-  ];
+  const USERS = users.users
 
   if (USERS.length  === 0 ) {
     return <h1>No User Was Found</h1>
@@ -39,9 +17,9 @@ const UserCard = () => {
 
         {USERS.map((user) => {
           return (
-            <Link to={`${user.uid}/Places`} className="userlink" key={user.uid}>
+            <Link to={`${user.id}/Places`} className="userlink" key={user.id}>
                 <div className="one-user">
-                    <img src={user.profileImage} alt="Profile" className="picture-for-profile" />
+                    <img src={user.image} alt="Profile" className="picture-for-profile" />
                     <div className="name-places">
                         <h3>{user.name}</h3>
                         <p>{user.placesVisited} {user.placesVisited === 1 ? 'place visited' : 'places visited' }</p>

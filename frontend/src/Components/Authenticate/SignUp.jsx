@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Form, Link, redirect } from 'react-router-dom'
+import { Form, Link, redirect, useNavigation } from 'react-router-dom'
 import './SignUp.css'
 
 export async function action ({ request }) {
@@ -37,6 +37,9 @@ export async function action ({ request }) {
 
 const SignUp = () => {
 
+    const navigation = useNavigation()
+    const state = navigation.state
+
     return (
     <div className='authenticate'>
         <Form method='post' className='authenticate-form'>
@@ -70,7 +73,9 @@ const SignUp = () => {
             
             <div className='auth-bns-links'>
                 <Link to='/Authenticate'>Log in</Link>
-                <button type="submit">Sign Up</button>
+                <button type="submit" disabled={state==='submitting'}>
+                    {state==='submitting' ? 'Signing up' : 'Sign Up'}
+                </button>
             </div>
         </Form>
     </div>

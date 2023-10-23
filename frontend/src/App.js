@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 
-import Users from './Container/Users'
-import Places from './Container/Places'
-import Authenticate, {action as authenticateAction} from './Container/Authenticate'
+import Users, {loader as usersLoader} from './Container/Users'
+import Places, {loader as placesLoader} from './Container/Places'
+import Authenticate from './Container/Authenticate'
 import SignUp, {action as signUpAction} from './Components/Authenticate/SignUp'
 import NewPlace, {action as newPlaceAction, loader as newPlaceLoader} from './Container/NewPlace'
 import DetailPlace from './Container/DetailPlace'
@@ -10,6 +10,8 @@ import Layout from './Container/Layout'
 import NotFound from './Components/NotFound/NotFound'
 import Error from './Components/Error/Error'
 import EditPlace from './Container/EditPlace'
+
+import { AuthProvider } from './Components/utils/AuthContext'
 
 import './App.css';
 
@@ -20,19 +22,22 @@ function App() {
 
       <Route index 
         element={<Users />}
+        loader={usersLoader}
+        errorElement={<Error />} 
       />
       
       <Route 
         path=':uid/Places' 
         element={<Places />} 
-        errorElement={<Error />} 
+        errorElement={<Error />}
+        loader={placesLoader} 
       />
       
       <Route 
         path='Authenticate' 
         element={<Authenticate />} 
         errorElement={<Error />}
-        action={authenticateAction}
+        // action={authenticateAction}
       />
 
       <Route 
@@ -69,7 +74,9 @@ function App() {
 
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Form, useActionData } from 'react-router-dom'
+import { Form, redirect, useNavigation } from 'react-router-dom'
 import { authRequired } from '../Components/utils/AuthRequired'
 
 export async function action({ request }) {
@@ -11,7 +11,24 @@ export async function action({ request }) {
   const address = formData.get('address')
   const image = formData.get('image')
 
-  return { title, description, address, image }
+  const response = await fetch('http://localhost:5000/api/places', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'Application/JSON'
+    }, 
+    body: JSON.stringify({
+      title, description, address, image
+    })
+  })
+
+  if (!response.ok) {
+    const data = await response.json()
+    throw new Error(data.message)
+  } else {
+    redirect('/')
+  }
+
+  return null
 }
 
 export async function loader({request}) {
@@ -21,8 +38,8 @@ export async function loader({request}) {
 
 const NewPlace = () => {
 
-  const data = useActionData()
-  console.log(data);
+  const navigation = useNavigation()
+  const state = navigation.state
 
   return (
     <div className='new-place-form'>
@@ -61,7 +78,9 @@ const NewPlace = () => {
               id="image" 
           />
 
-          <button type='submit' className='add-place-btn'>Add Place</button>
+          <button type='submit' disabled={state==='submitting'} className='add-place-btn'>
+            {state==='submitting' ? 'Adding Place' : 'Add Place'}
+          </button>
 
         </Form>
       </div>
