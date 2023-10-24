@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Link, useSearchParams, useNavigation, useNavigate } from 'react-router-dom'
+import { Link, useSearchParams, useNavigation, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../Components/utils/AuthContext';
 
 const Authenticate = () => {
@@ -10,6 +10,7 @@ const Authenticate = () => {
     });
 
     const [searchParams] = useSearchParams()
+    const location = useLocation()
     const navigation = useNavigation()
     const navigate = useNavigate()
     const auth = useAuth()
@@ -25,7 +26,6 @@ const Authenticate = () => {
           [name] : value
         }
       })
-      console.log(formData);
     }
   
     const handleSubmit  = async (e) => {
@@ -49,8 +49,10 @@ const Authenticate = () => {
           const data = await response.json()
           if (data.message === 'Logged In Successfully!' ) {
             auth.login(data)
-            // const pathname = new URL(request.url).searchParams.get('redirectTo') || '/'
-            return navigate('/')
+            const search = location.search
+            const URLSearchSearchParams = new URLSearchParams(search)
+            const pathname = URLSearchSearchParams.get('redirectTo') || '/'
+            return navigate(pathname)
           }
         }
     }

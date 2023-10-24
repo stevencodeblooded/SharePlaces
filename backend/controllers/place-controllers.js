@@ -34,7 +34,7 @@ const getPlacesByUserId = async (req, res, next) => {
     }
 
     if (!places || places.length === 0 ) {
-        return res.status(404).json({message: 'Could not find places for the specified user id'})
+        return res.status(404).json({message: 'Could not find any place for the specified user id'})
     }
 
     res.json({ places: places.map(p => p.toObject({ getters: true }))}).status(200)
@@ -75,7 +75,7 @@ const createPlace = async (req, res, next) => {
         return res.status(500).json({ message: "Could not create place, Try again later" })
     }
 
-    res.status(201).json({ places: createdPlace.toObject({ getters: true}) })
+    res.status(201).json({ places: createdPlace.toObject({ getters: true}), message: 'Created Place Successfully'})
 }  
 
 

@@ -2,14 +2,18 @@ import React from 'react'
 
 import './DeleteModal.css'
 
-const DeleteModal = () => {
+const DeleteModal = ({ setIsDelete }) => {
 
     const handleCancel = () => {
-        console.log('Cancel Btn working');
+        setIsDelete(false)
     }
 
     const handleDelete = () => {
+
+        //DELETE LOGIC GOES HERE
+
         console.log('Delete Button Working');
+        setIsDelete(false)
     }
 
   return (

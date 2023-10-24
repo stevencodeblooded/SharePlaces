@@ -1,14 +1,19 @@
-import { redirect } from "react-router-dom"
+import React from 'react'
 
-export async function authRequired ( request ) {
+import { useAuth } from './AuthContext'
+import { Navigate, useLocation } from 'react-router-dom'
 
-    const isLoggedIn = localStorage.getItem('isLoggedIn')
-
-    const pathname = new URL(request.url).pathname
+const AuthRequired = ({ children }) => {
     
-    if(!isLoggedIn) {
-        throw redirect(`/Authenticate?message=You must Log In. Test any Email&redirectTo=${pathname}`)
+    const auth = useAuth()
+    const location = useLocation()
+    const pathname = location.pathname
+
+    if (!auth.user) {
+        return <Navigate to={`/Authenticate?message=You must login to create a place!&redirectTo=${pathname}`}/>
     }
 
-    return null
+  return children
 }
+
+export default AuthRequired
