@@ -41,7 +41,12 @@ const UserPlace = ({ place }) => {
                 <Link to={`/Places/${place.id}/edit`}>Edit</Link>
                 <button onClick={handleDelete}>Delete</button>
                 {isDelete && (
-                    <DeleteModal setIsDelete={setIsDelete} />
+                    <DeleteModal
+                        isDelete={isDelete} 
+                        setIsDelete={setIsDelete} 
+                        placeId={place.id} 
+                        title={place.title} 
+                    />
                 )}
 
             </div>

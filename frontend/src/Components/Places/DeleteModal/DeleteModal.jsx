@@ -1,25 +1,37 @@
 import React from 'react'
 
+import { useNavigate } from 'react-router-dom'
 import './DeleteModal.css'
 
-const DeleteModal = ({ setIsDelete }) => {
+const DeleteModal = ({ setIsDelete, placeId, title }) => {
+
+    const navigate = useNavigate()
 
     const handleCancel = () => {
         setIsDelete(false)
     }
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
 
-        //DELETE LOGIC GOES HERE
-
-        console.log('Delete Button Working');
-        setIsDelete(false)
+        try {
+            const response = await fetch(`http://localhost:5000/api/places/${placeId}`, {
+                method: 'DELETE', 
+            })
+    
+            console.log(response);
+    
+            setIsDelete(false)
+            navigate('/Deleted Successfully')
+        } catch (error) {
+            console.log(error);
+        }
     }
 
   return (
   <div className='overlay'>
         <div className='delete-container'>
-            <h2>Are You Sure?</h2>
+            <h1 className='place-title'>{title}</h1>
+            <h2>Are You Sure you want to delete this place?</h2>
             <div className='delete-btns'>
                 <button onClick={handleCancel}>Cancel</button>
                 <button onClick={handleDelete}>Delete</button>

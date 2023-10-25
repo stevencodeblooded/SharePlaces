@@ -36,8 +36,10 @@ const Places = () => {
   if (!userPlace) {
     const error = userData.message
     return(
-      <div>
-        <h2>{error}</h2>
+      <div className='error-block'>
+        <div>
+          <h2>{error}</h2>
+        </div>
       </div>
     )
   }

@@ -1,47 +1,29 @@
 import React, { useState } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useNavigate, useLoaderData, useParams } from 'react-router-dom'
 
-const USERS = [
-  {
-    uid: 1,
-    name: "Steven Ochieng",
-    profileImage: '',
-    placesVisited: 3,
-    titleOfPlace: 'Moi Avenue',
-    street: 'Mutarrakea Junction ',
-    description: 'Create a beautiful blog that fits your style. Choose from a selection of '
-  },
-  {
-    uid: 2,
-    name: "Clinton Odhiambo",
-    profileImage: '',
-    placesVisited: 3,
-    titleOfPlace: 'Uhuru Park',
-    street: 'Kenyatta Avenue',
-    description: 'Give your blog the perfect home. Get a blogspot.com domain or buy a custom domain with just a few clicks.'
-  },
-  {
-    uid: 3,
-    name: "Erine Auma",
-    profileImage: '',
-    placesVisited: 3,
-    titleOfPlace: 'Savanna Park',
-    street: 'Biashara Street',
-    description: 'Get paid for your hard work. Google AdSense can automatically display relevant targeted ads on your blog so that you can earn income by posting about your passion.'
+export async function loader({ params }) {
+
+  const placeId = params.pid
+
+  try {
+    const responseData = await fetch(`http://localhost:5000/api/places/${placeId}`)
+    const place = responseData
+    return place
+  } catch (error) {
+   console.log(error); 
   }
-]
+}
 
 const EditPlace = () => {
 
+  const navigate = useNavigate() 
   const { pid } = useParams()
-
-  const identifiedPlace = USERS.find(place => {
-    return place.uid === parseInt(pid)
-  })
+  const data = useLoaderData()
+  const identifiedPlace = data.place
 
   const [formData, setFormData] = useState({
-    title: identifiedPlace.titleOfPlace,
+    title: identifiedPlace.title,
     description: identifiedPlace.description
   })
 
@@ -57,14 +39,22 @@ const EditPlace = () => {
   }
 
   if (!identifiedPlace) {
-    return <h1>No Place With that ID Found!</h1>
+    return <h1>Place Not Found</h1>
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    //send the Data to DB
-    // console.log(formData);
+    const response = await fetch(`http://localhost:5000/api/places/${pid}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'Application/Json'
+      },
+      body: JSON.stringify(formData)
+    })
+
+    console.log(response)
+    navigate('/updated Successfully')
   }
 
   return (
@@ -87,7 +77,6 @@ const EditPlace = () => {
             value={formData.description}
             onChange={handleChange}
         >
-          
         </textarea>
 
         <button className='update-place-btn'>Update Place</button>

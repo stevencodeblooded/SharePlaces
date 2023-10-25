@@ -1,0 +1,19 @@
+.error-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+
+.error-block > div {
+    background-color: #ccc;
+    width: 400px;
+    height: 200px;
+    background-color: #FF6B6B;
+    color: #FFD700;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-inline: 20px;
+    text-align: center;
+}

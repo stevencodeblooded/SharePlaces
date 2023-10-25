@@ -9,7 +9,8 @@ import DetailPlace from './Container/DetailPlace'
 import Layout from './Container/Layout'
 import NotFound from './Components/NotFound/NotFound'
 import Error from './Components/Error/Error'
-import EditPlace from './Container/EditPlace'
+import EditPlace, { loader as editPlaceLoader } from './Container/EditPlace'
+import Privacy from './Components/PrivacyTerms/Privacy'
 
 import { AuthProvider } from './Components/utils/AuthContext'
 
@@ -61,7 +62,13 @@ function App() {
       <Route 
         path='Places/:pid/edit'
         element={<EditPlace />}
+        loader={editPlaceLoader}
         errorElement={<Error />}
+      />
+
+      <Route 
+        path='Privacy-Terms'
+        element={<Privacy />}
       />
 
       <Route path='*' element={<NotFound />} />

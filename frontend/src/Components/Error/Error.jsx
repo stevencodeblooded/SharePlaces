@@ -8,9 +8,11 @@ const Error = () => {
   const error = useRouteError()
 
   return (
-    <div>
+    <div className='error-block'>
+      <div>
         <h2>Error: {error.message}</h2>
         <pre>{error.status - error.statusText}</pre>
+      </div>
     </div>
   )
 }
