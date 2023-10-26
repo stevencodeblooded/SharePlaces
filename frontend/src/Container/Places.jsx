@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, Link } from 'react-router-dom'
 import UserPlace from '../Components/Places/UserPlace'
 
 export async function loader(userId) {
@@ -39,6 +39,7 @@ const Places = () => {
       <div className='error-block'>
         <div>
           <h2>{error}</h2>
+          <Link to='/places/NewPlace'>Creat Place</Link>
         </div>
       </div>
     )

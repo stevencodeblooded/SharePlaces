@@ -59,39 +59,38 @@ const Authenticate = () => {
 
   return (
     <React.Fragment>
-    {message && <h2 className='message-login'>{message}</h2>}
+      {message && <h2 className='message-login'>{message}</h2>}
 
-    <div className='authenticate'>
+      <div className='authenticate'>
+        <form onSubmit={handleSubmit} className='authenticate-form' >
 
-      <form onSubmit={handleSubmit} className='authenticate-form' >
+          <label htmlFor="email">Email</label>
+          <input 
+              type="email" 
+              name="email" 
+              value={formData.email}
+              onChange={handleChange}
+              required
+          />
 
-        <label htmlFor="email">Email</label>
-        <input 
-            type="email" 
-            name="email" 
-            value={formData.email}
-            onChange={handleChange}
-            required
-        />
+          <label htmlFor="password">Password</label>
+          <input 
+              type="password" 
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required 
+          />
 
-        <label htmlFor="password">Password</label>
-        <input 
-            type="password" 
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required 
-        />
+          <div className='auth-bns-links'>
+            <Link to='/SignUp'>Sign Up</Link>
+            <button type='submit'disabled={state==='submitting'}>
+            { state==='submitting' ? 'Logging in' : 'Login' }
+            </button>
+          </div>
 
-        <div className='auth-bns-links'>
-          <Link to='/SignUp'>Sign Up</Link>
-          <button type='submit'disabled={state==='submitting'}>
-           { state==='submitting' ? 'Logging in' : 'Login' }
-          </button>
-        </div>
-
-      </form>
-    </div>
+        </form>
+      </div>
   </React.Fragment>
   )
 }

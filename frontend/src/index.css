@@ -117,6 +117,33 @@
   color: #FFD700;
 }
 
+.cant-access {
+  padding-inline: 20px;
+}
+
+.cant-access > h1 {
+  color: #FF6B6B;
+  margin-bottom: 20px;
+}
+
+.cant-access > a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #FF6B6B;
+  color: #fff;
+  transition: .3s ease-in-out all;
+}
+
+.cant-access > a:hover {
+  color: #FFD700;
+}
+
+
 @media screen and (max-width: 700px) {
   .edit-place-form {
     width: 100%;

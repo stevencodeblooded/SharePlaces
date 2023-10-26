@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-import { useNavigate, useLoaderData, useParams } from 'react-router-dom'
+import { useNavigate, useLoaderData, useParams, Link } from 'react-router-dom'
+import { useAuth } from '../Components/utils/AuthContext'
 
 export async function loader({ params }) {
 
@@ -17,6 +18,7 @@ export async function loader({ params }) {
 
 const EditPlace = () => {
 
+  const auth = useAuth()
   const navigate = useNavigate() 
   const { pid } = useParams()
   const data = useLoaderData()
@@ -59,29 +61,37 @@ const EditPlace = () => {
 
   return (
     <div className='edit-place'>
-      <form onSubmit={handleSubmit} className='edit-place-form'>
-        <label htmlFor="title">Title</label>
-        <input 
-            type="text" 
-            name="title" 
-            id="title" 
-            value={formData.title}
-            onChange={handleChange}
-        />
+      { auth.user ? (
+        <form onSubmit={handleSubmit} className='edit-place-form'>
+          <label htmlFor="title">Title</label>
+          <input 
+              type="text" 
+              name="title" 
+              id="title" 
+              value={formData.title}
+              onChange={handleChange}
+          />
 
-        <label htmlFor="description">Description</label>
-        <textarea 
-            name="description" 
-            id="description" 
-            rows="7"
-            value={formData.description}
-            onChange={handleChange}
-        >
-        </textarea>
+          <label htmlFor="description">Description</label>
+          <textarea 
+              name="description" 
+              id="description" 
+              rows="7"
+              value={formData.description}
+              onChange={handleChange}
+          >
+          </textarea>
 
-        <button className='update-place-btn'>Update Place</button>
+          <button className='update-place-btn'>Update Place</button>
 
-      </form>
+        </form>
+      ) : (
+        <div className='cant-access'>
+          <h1>Cannot Access This Page, Must login...</h1>
+          <Link to='/Authenticate'>Login</Link>
+        </div>
+      )
+      }
     </div>
   )
 }

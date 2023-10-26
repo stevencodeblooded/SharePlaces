@@ -11,6 +11,14 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false)
   const auth = useAuth()
+  const user = auth.user
+
+  let uid
+  try {
+    uid = user.user.id
+  } catch (error) {
+    
+  }
 
   const handleIsOpen = () => setIsOpen(!isOpen)
   const handleCloseMenu = () => setIsOpen(false)
@@ -32,6 +40,12 @@ const Header = () => {
           <li>
             <NavLink to='places/NewPlace' className={({isActive}) => isActive ? 'active-link' : null} onClick={handleCloseMenu} >New Place</NavLink>
           </li>
+          
+          { auth.user && (
+          <li>
+            <NavLink to={`${uid}/Places`} className={({isActive}) => isActive ? 'active-link' : null} onClick={handleCloseMenu} >My Places</NavLink>
+          </li>
+          )}
 
           { !auth.user ? (
           <li>

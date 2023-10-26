@@ -1,12 +1,29 @@
 import React, { useState } from 'react'
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ViewOnMap from './ViewOnMap/ViewOnMap';
 import DeleteModal from './DeleteModal/DeleteModal';
+import { useAuth } from '../utils/AuthContext';
 
 import './UserPlace.css'
 
 const UserPlace = ({ place }) => {
+
+    const creatorId = useParams().uid
+    const auth = useAuth()
+    const user = auth.user
+
+    let logedUserId
+    try {
+        logedUserId = user.user.id
+    } catch (error) {}
+
+    let THE_CREATOR
+    try {
+        THE_CREATOR = creatorId === logedUserId
+    } catch (error) {
+        
+    }
 
     const [isViewed, setIsViewed] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
@@ -38,8 +55,9 @@ const UserPlace = ({ place }) => {
                     <ViewOnMap setIsViewed={setIsViewed} user={place} />
                 )}
 
-                <Link to={`/Places/${place.id}/edit`}>Edit</Link>
-                <button onClick={handleDelete}>Delete</button>
+                { THE_CREATOR && <Link to={`/Places/${place.id}/edit`}>Edit</Link>}
+
+                { THE_CREATOR && <button onClick={handleDelete}>Delete</button>}
                 {isDelete && (
                     <DeleteModal
                         isDelete={isDelete} 
