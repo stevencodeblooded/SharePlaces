@@ -9,19 +9,31 @@ import "./Header.css";
 
 const Header = () => {
 
+  const [userClicked, setUserClicked] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const auth = useAuth()
   const user = auth.user
+
+  let userImage 
+  try {
+    userImage = user.user.image
+  } catch (error) {
+    
+  }
 
   let uid
   try {
     uid = user.user.id
   } catch (error) {
-    
   }
 
   const handleIsOpen = () => setIsOpen(!isOpen)
   const handleCloseMenu = () => setIsOpen(false)
+  const handleUserState = () => setUserClicked(!userClicked)
+  const handleLogOut = () => {
+    auth.logout()
+    setUserClicked(false)
+  }
 
   return (
     <div className="header-container">
@@ -53,7 +65,20 @@ const Header = () => {
           </li>
           ) : (
             <li>
-              <NavLink onClick={auth.logout}>Log Out</NavLink>
+              <NavLink>
+                <div>
+                  <img src={`http://localhost:5000/assets/${userImage}`} 
+                      alt="Profile" 
+                      className="nav-user-profile"
+                      onClick={handleUserState}
+                  />
+                </div>
+              </NavLink>
+              {userClicked && (
+                <div className="user-data-nav">
+                  <p className="logout-nav" onClick={handleLogOut}>Log Out</p>
+                </div>
+              )}
             </li>
           ) }
 
