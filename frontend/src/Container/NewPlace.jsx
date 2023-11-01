@@ -7,17 +7,32 @@ import { useAuth } from '../Components/utils/AuthContext'
 const NewPlace = () => {
 
     const auth = useAuth() 
-    const [formData, setFormData] = useState({
+    const [newPlace, setNewPlace] = useState({
       title: '',
       description: '',
       address: '',
-      image: '',
-      creator: ''
+      creator: '',
+      image: ''
     });
-  
+
     const navigate = useNavigate()
     const navigation = useNavigation()
     const state = navigation.state
+
+    const handleChange = (e) => {
+      const { name, value } = e.target
+
+        setNewPlace(prevData => {
+          return {
+            ...prevData, 
+            [name] : value
+          }
+        })
+    }
+
+    const handlePhoto = (e) => {
+      setNewPlace({...newPlace, image: e.target.files[0]})
+    }
 
     const handleFormSubmit = async (e) => {
       e.preventDefault()
@@ -25,57 +40,47 @@ const NewPlace = () => {
       if (auth.user) {
 
         const creatorId = auth.user.user.id
+
+        const formData = new FormData()
+
+        formData.append('image', newPlace.image)
+        formData.append('title', newPlace.title)
+        formData.append('description', newPlace.description)
+        formData.append('address', newPlace.address)
+        formData.append('creator', creatorId)
+
         const response = await fetch('http://localhost:5000/api/places', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'Application/JSON'
-          }, 
-          body: JSON.stringify({
-            title: formData.title,
-            description: formData.description, 
-            address: formData.address, 
-            image: formData.image,
-            creator: creatorId
-          })
+          body: formData,
         })
       
         if (!response.ok) {
           const data = await response.json()
+          console.log(data);
           throw new Error(data.message)
         } else {
           const data = await response.json()
           console.log('DATA FROM POST CREATE PLACE', data);
           const uid = data.places.creator
           const message = data.message
-          console.log(message);
-          //SUCCESS MESSAGE
-          return navigate(`/${uid}/Places`) //NEED SOME CHANGE FOR THE ROUTE
+          alert(message)
+          return navigate(`/${uid}/Places`)
         }
       }
 
-    }
-
-    const handleChange = (e) => {
-      const { name, value } = e.target
-      setFormData(prevData => {
-        return {
-          ...prevData, 
-          [name] : value
-        }
-      })
     }
 
   return (
     <div className='new-place-form'>
       <div>
         <AuthRequired>
-          <form onSubmit={handleFormSubmit} className='form-container'>
+          <form onSubmit={handleFormSubmit} encType='multipart/form-data' className='form-container'>
             <label htmlFor="title">Title</label>
             <input 
                 type="text" 
                 name="title" 
                 id="title"
-                value={formData.title}
+                value={newPlace.title}
                 onChange={handleChange}
                 required 
             />
@@ -85,7 +90,7 @@ const NewPlace = () => {
                 name="description" 
                 id="description" 
                 rows="8"
-                value={formData.description}
+                value={newPlace.description}
                 onChange={handleChange}
                 required
               >
@@ -96,7 +101,7 @@ const NewPlace = () => {
                 type="text" 
                 name="address" 
                 id="address" 
-                value={formData.address}
+                value={newPlace.address}
                 onChange={handleChange}
                 required
             />
@@ -106,8 +111,8 @@ const NewPlace = () => {
                 type="file" 
                 name="image" 
                 id="image" 
-                value={formData.image}
-                onChange={handleChange}
+                accept='.jpeg, .png, .jpg'
+                onChange={handlePhoto}
             />
 
             <button type='submit' disabled={state==='submitting'} className='add-place-btn'>

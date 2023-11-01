@@ -1,14 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const upload = require('../multer-config')
 
-//CONTROLLERS
 const placeControllers = require('../controllers/place-controllers')
-
-//------------------------ROUTES----------------------------
 
 router.get('/:pid', placeControllers.getPlacesById)
 router.get('/users/:uid', placeControllers.getPlacesByUserId)
-router.post('/', placeControllers.createdPlace)
+router.post('/', upload.single('image'), placeControllers.createdPlace)
 router.patch('/:pid', placeControllers.updatePlace)
 router.delete('/:pid', placeControllers.deletePlace)
 

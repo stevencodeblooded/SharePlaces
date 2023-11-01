@@ -1,9 +1,13 @@
 import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../utils/AuthContext'
 import './DeleteModal.css'
 
 const DeleteModal = ({ setIsDelete, placeId, title }) => {
+
+    const auth = useAuth()
+    const creatorId = auth.user.user.id
 
     const navigate = useNavigate()
 
@@ -21,7 +25,7 @@ const DeleteModal = ({ setIsDelete, placeId, title }) => {
             console.log(response);
     
             setIsDelete(false)
-            navigate('/Deleted Successfully')
+            navigate(`/${creatorId}/Places`)
         } catch (error) {
             console.log(error);
         }

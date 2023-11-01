@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 import Users, {loader as usersLoader} from './Container/Users'
 import Places, {loader as placesLoader} from './Container/Places'
 import Authenticate from './Container/Authenticate'
-import SignUp, {action as signUpAction} from './Components/Authenticate/SignUp'
+import SignUp from './Components/Authenticate/SignUp'
 import NewPlace from './Container/NewPlace'
 import DetailPlace from './Container/DetailPlace'
 import Layout from './Container/Layout'
@@ -44,7 +44,6 @@ function App() {
         path='SignUp' 
         element={<SignUp />} 
         errorElement={<Error />}
-        action={signUpAction}
       />
       
       <Route 

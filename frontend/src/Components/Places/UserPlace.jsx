@@ -21,9 +21,7 @@ const UserPlace = ({ place }) => {
     let THE_CREATOR
     try {
         THE_CREATOR = creatorId === logedUserId
-    } catch (error) {
-        
-    }
+    } catch (error) {}
 
     const [isViewed, setIsViewed] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
@@ -39,7 +37,7 @@ const UserPlace = ({ place }) => {
   return (
     <div className='user-places'>
         <div className='user-place-data'>
-            <img src={place.image} alt="Place" className='place-image'/>
+            <img src={`http://localhost:5000/assets/${place.image}`} alt="Place" className='place-image'/>
 
             <div className='place-title-desc'>
                 <h2>{ place.title }</h2>

@@ -19,6 +19,14 @@ export async function loader({ params }) {
 const EditPlace = () => {
 
   const auth = useAuth()
+
+  let creatorId
+  try {
+    creatorId = auth.user.user.id 
+  } catch (error) {
+    
+  }
+
   const navigate = useNavigate() 
   const { pid } = useParams()
   const data = useLoaderData()
@@ -56,7 +64,7 @@ const EditPlace = () => {
     })
 
     console.log(response)
-    navigate('/updated Successfully')
+    navigate(`/${creatorId}/Places`)
   }
 
   return (
