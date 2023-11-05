@@ -1,4 +1,5 @@
 const User = require('../models/users')
+const bcrypt = require('bcrypt') 
 
 //GET USERS-----------------modal.find()-----------------------
 const getUsers = async (req, res, send) => {
@@ -32,10 +33,17 @@ const signup = async (req, res, next) => {
         return res.status(422).json({message: 'User already exists, please login'})
     }
 
+    let hashedPassword
+    try {
+        hashedPassword = await bcrypt.hash(password, 12)
+    } catch (error) {
+        return res.status(500).json({message: 'Cannot Signup, Try again'})
+    }
+
     const createdUser = new User({
         name,
         email,
-        password,
+        password: hashedPassword,
         image,
         places: []
     })
@@ -62,10 +70,21 @@ const login = async (req, res, next) => {
         return res.status(500).json({message: 'Login failed, Email cannot be found!'})
     }
 
-    if (!existingUser || existingUser.password !== password) {
+    if (!existingUser) {
         return res.status(401).json({ message: 'invalid credentials, could not log in' })
     }
+
+    let isValidPassword = false
+    try {
+        isValidPassword = await bcrypt.compare(password, existingUser.password)
+    } catch (error) {
+        return res.status(500).json({ message: '' })
+    }
     
+    if (!isValidPassword) {
+        return res.status(500).json({ message: 'Could not log in, Invalid password. Try Again' })
+    }
+
     res.status(200).json({message: 'Logged In Successfully!', user: existingUser.toObject({ getters: true })})
 }
 

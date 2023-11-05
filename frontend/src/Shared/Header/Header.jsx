@@ -32,6 +32,7 @@ const Header = () => {
   const handleUserState = () => setUserClicked(!userClicked)
   const handleLogOut = () => {
     auth.logout()
+    setIsOpen(false)
     setUserClicked(false)
   }
 
