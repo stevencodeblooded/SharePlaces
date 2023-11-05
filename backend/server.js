@@ -17,7 +17,7 @@ app.use('/api/places', placesRoutes)
 app.use('/api/users', usersRoutes)
 
 mongoose
-    .connect('mongodb+srv://stevencodeblooded:A1UOPy0y3FeiXXQ7@cluster0.p3mcyyf.mongodb.net/SharePlaces?retryWrites=true&w=majority')
+    .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.p3mcyyf.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
     .then(()=> {
         app.listen(5000)
     })

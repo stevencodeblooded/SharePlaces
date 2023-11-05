@@ -9,7 +9,7 @@ export async function loader(userId) {
 
   let res
   try {
-    res = await fetch(`http://localhost:5000/api/places/users/${creatorId}`)
+    res = await fetch(process.env.REACT_APP_BACKEND_URL + `/places/users/${creatorId}`)
   } catch (error) {
     console.log(error);
   }

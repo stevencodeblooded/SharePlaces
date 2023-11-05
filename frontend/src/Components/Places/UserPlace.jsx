@@ -37,7 +37,7 @@ const UserPlace = ({ place }) => {
   return (
     <div className='user-places'>
         <div className='user-place-data'>
-            <img src={`http://localhost:5000/assets/${place.image}`} alt="Place" className='place-image'/>
+            <img src={process.env.REACT_APP_ASSET_URL + `/assets/${place.image}`} alt="Place" className='place-image'/>
 
             <div className='place-title-desc'>
                 <h2>{ place.title }</h2>

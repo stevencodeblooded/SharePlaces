@@ -18,7 +18,7 @@ const DeleteModal = ({ setIsDelete, placeId, title }) => {
     const handleDelete = async () => {
 
         try {
-            const response = await fetch(`http://localhost:5000/api/places/${placeId}`, {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/places/${placeId}`, {
                 method: 'DELETE', 
             })
     

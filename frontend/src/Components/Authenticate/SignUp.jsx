@@ -39,7 +39,7 @@ const SignUp = () => {
         formData.append('image', signUpData.image)
         
         try {
-            const response = await fetch('http://localhost:5000/api/users/SignUp', {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/users/SignUp', {
                 method: 'POST',
                 body: formData
             })

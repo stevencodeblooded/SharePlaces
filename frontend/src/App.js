@@ -14,8 +14,6 @@ import Privacy from './Components/PrivacyTerms/Privacy'
 
 import { AuthProvider } from './Components/utils/AuthContext'
 
-import './App.css';
-
 function App() {
 
   const router = createBrowserRouter(createRoutesFromElements(

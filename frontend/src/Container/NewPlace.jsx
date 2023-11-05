@@ -49,7 +49,7 @@ const NewPlace = () => {
         formData.append('address', newPlace.address)
         formData.append('creator', creatorId)
 
-        const response = await fetch('http://localhost:5000/api/places', {
+        const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/places', {
           method: 'POST',
           body: formData,
         })

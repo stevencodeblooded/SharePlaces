@@ -68,7 +68,7 @@ const Header = () => {
             <li>
               <NavLink>
                 <div>
-                  <img src={`http://localhost:5000/assets/${userImage}`} 
+                  <img src={process.env.REACT_APP_ASSET_URL + `/assets/${userImage}`} 
                       alt="Profile" 
                       className="nav-user-profile"
                       onClick={handleUserState}

@@ -19,7 +19,7 @@ const UserCard = ({ users }) => {
           return (
             <Link to={`${user.id}/Places`} className="userlink" key={user.id}>
                 <div className="one-user">
-                    <img src={`http://localhost:5000/assets/${user.image}`} alt="Profile" className="picture-for-profile" />
+                    <img src={process.env.REACT_APP_ASSET_URL + `/assets/${user.image}`} alt="Profile" className="picture-for-profile" />
                     <div className="name-places">
                         <h3>{user.name}</h3>
                         <p>{noPlaces} {noPlaces === 0 ? '- no place visited' : noPlaces === 1 ? 'place visited' : 'places visited'}</p>

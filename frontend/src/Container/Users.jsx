@@ -4,7 +4,7 @@ import UserCard from '../Components/Users/UserCard'
 import { useLoaderData } from 'react-router-dom'
 
 export async function loader() {
-  const response = await fetch('http://localhost:5000/api/users')
+  const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/users')
   const data = await response.json()
 
   return data

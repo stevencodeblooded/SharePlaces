@@ -37,7 +37,7 @@ const signup = async (req, res, next) => {
     try {
         hashedPassword = await bcrypt.hash(password, 12)
     } catch (error) {
-        return res.status(500).json({message: 'Cannot Signup, Try again'})
+        return res.status(500).json({message: 'Could not create user, please try again'})
     }
 
     const createdUser = new User({
@@ -78,11 +78,11 @@ const login = async (req, res, next) => {
     try {
         isValidPassword = await bcrypt.compare(password, existingUser.password)
     } catch (error) {
-        return res.status(500).json({ message: '' })
+        return res.status(500).json({ message: 'Could not log you in , Please check your credentials and try again' })
     }
     
     if (!isValidPassword) {
-        return res.status(500).json({ message: 'Could not log in, Invalid password. Try Again' })
+        return res.status(500).json({ message: 'Invalid Credentials, Could not log you in. Please Try Again' })
     }
 
     res.status(200).json({message: 'Logged In Successfully!', user: existingUser.toObject({ getters: true })})

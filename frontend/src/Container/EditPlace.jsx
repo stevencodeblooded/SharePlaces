@@ -8,7 +8,7 @@ export async function loader({ params }) {
   const placeId = params.pid
 
   try {
-    const responseData = await fetch(`http://localhost:5000/api/places/${placeId}`)
+    const responseData = await fetch(process.env.REACT_APP_BACKEND_URL + `/places/${placeId}`)
     const place = responseData
     return place
   } catch (error) {
@@ -55,7 +55,7 @@ const EditPlace = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch(`http://localhost:5000/api/places/${pid}`, {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/places/${pid}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'Application/Json'
